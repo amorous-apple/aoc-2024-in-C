@@ -39,4 +39,8 @@ int main(int argc, char *argv[]) {
         total += abs(xdata[i] - ydata[i]);
     }
     printf("The total is: %d \n", total);
+
+    free(Collection1);
+    free(xdata);
+    free(ydata);
 }

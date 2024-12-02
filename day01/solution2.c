@@ -68,4 +68,9 @@ int main(int argc, char *argv[]) {
     }
 
     printf("The total is: %d \n", totalSim);
+
+    free(Collection1);
+    free(xdata);
+    free(ydata);
+    free(rightLsCount);
 }
