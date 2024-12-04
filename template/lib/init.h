@@ -9,15 +9,14 @@
 typedef struct {
     char* input;
     int linecount;
-    int dataSize;
 } Parameters;
 
 extern Parameters params;
 
 void initialize(int argc, char* argv[]);
 FILE* init_input();
-Data* init_collection1();
-void data_read(Data* Collection, FILE* psrcfile);
+char **init_collection();
+void data_read(char **Collection, FILE* psrcfile);
 
 int countLine(char* filename);
 

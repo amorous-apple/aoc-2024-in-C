@@ -9,7 +9,6 @@ void initialize(int argc, char* argv[]) {
         params.input = "./input.txt";
     }
     params.linecount = countLine(params.input);
-    params.dataSize = sizeof(Data);
 }
 
 FILE* init_input() {
@@ -21,13 +20,31 @@ FILE* init_input() {
     return srcfile;
 }
 
-Data* init_collection1() {
-    Data* Collection1 = malloc(params.linecount * sizeof(Data));
-    if (Collection1 == NULL) {
-        perror("Error allocating memory for Collection 1. \n");
+char** init_collection() {
+    // Allocating memory for all chars in input
+    char* charArr = malloc(params.linecount * MAX_LINE_LENGTH * sizeof(char));
+    if (charArr == NULL) {
+        perror("Error allocating memory for charArr. \n");
         exit(EXIT_FAILURE);
     }
-    return Collection1;
+
+    // Allocating memory for pointers to every row
+    char** Collection = malloc(params.linecount * sizeof(char*));
+    if (Collection == NULL) {
+        perror("Error allocating memory for collection. \n");
+        exit(EXIT_FAILURE);
+    }
+    // Assigning the pointers for the beginning of every row
+    for (int i = 0; i < params.linecount; i++) {
+        Collection[i] = charArr + (i * MAX_LINE_LENGTH);
+    }
+
+    // Reading the data from the file to Collection
+    FILE* src = init_input();
+    data_read(Collection, src);
+    fclose(src);
+
+    return Collection;
 }
 
 // A function that returns the number of lines in a file
@@ -63,10 +80,9 @@ int countLine(char* filename) {
 }
 
 // Reading and storing the data for the bodies in Collection
-void data_read(Data* Collection, FILE* psrcfile) {
+void data_read(char** Collection, FILE* psrcfile) {
     for (int i = 0; i < params.linecount; i++) {
-        if (fscanf(psrcfile, "%d %d", &Collection[i].x, &Collection[i].y) !=
-            2) {
+        if (fscanf(psrcfile, "%s", Collection[i]) != 1) {
             printf("Error reading data for line %i \n", i);
             free(Collection);
             fclose(psrcfile);
