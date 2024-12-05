@@ -14,6 +14,11 @@ int main(int argc, char *argv[]) {
     char **Collection = init_collection();
 
     for (int i = 0; i < params.linecount; i++) {
-        printf("Line %d: %s \n", i, Collection[i]);
+        printf("==== LINE %d ====\n", i);
+        // puts(Collection[i]);
+        printf("%s\n\n", Collection[i]);
     }
+    char *string = "mul(999,999)";
+    int size = strlen(string);
+    printf("Size: %d", size);
 }

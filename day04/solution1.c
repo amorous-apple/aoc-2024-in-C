@@ -1,13 +1,8 @@
-#include <math.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-#include "lib/algorithms.h"
-#include "lib/constants.h"
 #include "lib/init.h"
-#include "lib/utils_vec.h"
 
+// Declaring the word to be searched for
 const char *WORD = "XMAS";
 
 int wordCounter(const char *word, char **Collection, int i, int j);
@@ -22,11 +17,14 @@ int searchSW(const char *word, char **Collection, int i, int j, int searchInd);
 int searchW(const char *word, char **Collection, int i, int j, int searchInd);
 
 int main(int argc, char *argv[]) {
+    // Initializing parameters and data memory
     initialize(argc, argv, WORD);
     char **Collection = init_collection();
 
     int totalCount = 0;
 
+    // Looping through every character and checking how many instances of WORD
+    // it is the beginning to
     for (int i = 0; i < params.linecount; i++) {
         for (int j = 0; j < params.linelength; j++) {
             totalCount += wordCounter(WORD, Collection, i, j);

@@ -14,5 +14,6 @@ int main(int argc, char *argv[]) {
     char **Collection = init_collection();
 
     for (int i = 0; i < params.linecount; i++) {
+        printf("Line %d: %s \n", i, Collection[i]);
     }
 }

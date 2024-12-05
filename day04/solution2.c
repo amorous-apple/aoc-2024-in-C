@@ -1,13 +1,8 @@
-#include <math.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-#include "lib/algorithms.h"
-#include "lib/constants.h"
 #include "lib/init.h"
-#include "lib/utils_vec.h"
 
+// Declaring the word to use for a 'cross-search'
 const char *WORD = "MAS";
 
 int wordCounter(const char *word, char **Collection, int i, int j);
